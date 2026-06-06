@@ -42,7 +42,7 @@ public class DragonFight {
 				// 3. Ask the player in a pop-up if they want to attack the dragon with a yell
 				// or a kick
 			
-			String yellOrAttack = JOptionPane.showInputDialog("Yell or Attack?");
+			String yellOrAttack = JOptionPane.showInputDialog("Yell or Kick?");
 	
 				// 4. If they typed in "yell":
 	
@@ -63,31 +63,48 @@ public class DragonFight {
 		
 				// 6. Subtract the player attack value from the dragon's health
 			
-			dragonHealth =- playerAttack;
+			dragonHealth -= playerAttack;
 
 			// THE DRAGON RETALIATES
 
 				// 7. Find a random number between 0 and 35 and store it in dragonAttack
+			
+			dragonAttack = ran.nextInt(35);
 	
 				// 8. Subtract the dragon attack value from the player's health
+			playerHealth -= dragonAttack;
 
 			// ASSESS THE DAMAGE
 
 				// 9. If the player's health is less than or equal to 0, the game is over,
 				//    call the playerLost() method
+			
+			if (playerHealth <= 0) {
+				playerLost ();
+			}
 	
 			
 				// 10. If the dragon's health is less than or equal to 0, the game is over,
 				//     call the dragonLost() method
+			if (dragonHealth <= 0) {
+				dragonLost ();
+			}
 
 			
 				// 11.  Pop up a message that tells us how much health the player and
 				// 		dragon have left.
+			
+			String healthReminder = "You have " +playerHealth+ ". The dragon has " +dragonHealth;
+			
+			JOptionPane.showMessageDialog(null, healthReminder);
 
 			
 			// (Bonus: Also display the amount of health that was lost by each in this
 			// round)
 			
+			String healthDamage = "Damage Dealt " +playerAttack+ ". Damage Received " +dragonAttack;
+			
+			JOptionPane.showMessageDialog(null, healthDamage);
 
 		} // this is the end of the while loop
 
